@@ -1,0 +1,226 @@
+/* Variable Definitions */
+:root {
+    --font-anton: "Anton", sans-serif;
+    --font-manrope: "Manrope", sans-serif;
+    --color-light-gray: #7A7A7A;
+    --color-yellow: #FFD15B;
+    --color-grey: #EDEDED;
+}
+
+/* Base Styles */
+body,
+button,
+input {
+    font-family: var(--font-manrope);
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-anton);
+}
+
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Header Styles */
+.bg-image {
+    background-image: url('assets/lampos-aritonang-24gR_9lCdes-unsplash\ 1.png');
+    background-size: cover;
+    height: 500px;
+}
+
+
+/* Main Content Styles */
+
+main {
+    height: 100%;
+}
+
+#main {
+    background-color: var(--color-grey);
+
+}
+
+
+#main h3 {
+    font-size: 21px;
+    line-height: 31px;
+    font-family: 'Anton', sans-serif;
+}
+
+#filters {
+    padding: 0 3vw;
+    margin: 30px 0 60px;
+}
+
+.filter_wrapper {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.dropdown_section {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 3vw;
+}
+
+/* Cards */
+
+.card {
+    height: 710px;
+}
+
+.card-title {
+    font-family: 'Anton', sans-serif;
+}
+
+.card-subtitle {
+    color: gray;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.card-img-top {
+    height: 219px;
+    min-height: 219px;
+    object-fit: cover;
+}
+
+.card-recipe-time {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background-color: var(--color-yellow);
+    border-radius: 2rem;
+}
+
+.card-text {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    /* number of lines to show */
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+
+
+.dropdown {
+    display: inline-flex;
+    flex-direction: column;
+    border-radius: 10px;
+    overflow: hidden;
+    min-width: 200px;
+    background: #FFF;
+    margin-bottom: 20px;
+}
+
+.dropdown_title-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    height: 57px;
+    cursor: pointer;
+}
+
+.fa-chevron-down.active {
+    transform: rotate(180deg);
+}
+
+.dropdown_content {
+    width: 100%;
+    max-width: 200px;
+    min-height: 200px;
+    height: 0;
+    min-height: 0;
+}
+
+.dropdown_content.active {
+    height: auto;
+}
+
+.dropdown_search-section {
+    position: relative;
+    top: 1px;
+    padding: 0 20px;
+    margin-bottom: 25px;
+}
+
+.dropdown_search-input {
+    position: relative;
+    width: 100%;
+    height: 36px;
+    padding: 10px;
+    border: none;
+    outline: 1px solid #C6C6C6;
+}
+
+.fa-thin_fa-magnifying-glass {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.dropdown_list {
+    list-style-type: none;
+    max-height: 150px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    margin-bottom: 20px;
+}
+
+.dropdown_list::-webkit-scrollbar {
+    display: none;
+}
+
+.dropdown_item {
+    padding: 5px 20px;
+}
+
+.dropdown_item:hover {
+    background: #FFD15B;
+    cursor: pointer;
+}
+
+.txt_filter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 57px;
+    font-family: 'Anton', arial;
+    font-size: 21px;
+    color: #1B1B1B;
+}
+
+.tags {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 20px 3vw;
+    width: 100%;
+}
+
+.tag {
+    border-radius: 10px;
+    background: #FFD15B;
+    display: inline-flex;
+    gap: 60px;
+    padding: 17px 18px;
+    align-items: center;
+}
+
+.close_btn {
+    cursor: pointer;
+}
