@@ -48,7 +48,7 @@
                         <div class="container w-75 mt-5">
                             <h1 class="text-center text-warning">
                                 CHERCHEZ PARMI PLUS DE 1500 RECETTES
-                                <span class="text-break">
+                                <span class="text-break"> </br>
                                     DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES</span>
                             </h1>
                         </div>
@@ -78,101 +78,157 @@
         <!-- Main Content -->
 
         <main id="main">
-            <div class="container py-3">
-                <!-- Filters -->
-                <section id="filters">
-                    <div class="filter_wrapper">
-                        <div class="dropdown_section">
 
-                            <div class="col-3">
+            <!-- Filters -->
 
-                                <div class="dropdown" id="ingredients">
-                                    <div class="dropdown_title-section">
-                                        <h3
-                                            class="dropdown_title">Ingrédients</h3>
-                                        <i class="fa fa-chevron-down"></i>
-
-                                    </div>
-                                    <div class="dropdown_content">
-                                        <div class="dropdown_search-section">
-                                            <input type="search" name
-                                                id="ingredientsInput"
-                                                class="dropdown_search-input">
-                                            <i
-                                                class="fa-thin fa-magnifying-glass"></i>
-
-                                        </div>
-                                        <ul class="dropdown_list"
-                                            id="ingredients_list">
-                                        </ul>
-                                    </div>
-                                </div> </div>
-
-                            <div class="col-3">
-
-                                <div class="dropdown" id="appareils">
-                                    <div class="dropdown_title-section">
-                                        <h3
-                                            class="dropdown_title">Appareils</h3>
-                                        <i class="fa fa-chevron-down"></i>
-                                    </div>
-                                    <div class="dropdown_content">
-                                        <div class="dropdown_search-section">
-                                            <input type="search" name
-                                                id="appliancesInput"
-                                                class="dropdown_search-input">
-                                            <i
-                                                class="fa-thin fa-magnifying-glass"></i>
-                                        </div>
-                                        <ul class="dropdown_list"
-                                            id="appareils_list">
-                                        </ul>
+            <div class="sortSection">
+                <div class="sortBox">
+                    <div class="dropdown">
+                        <button
+                            id="ingredientDropdownToggle"
+                            class="btn dropdown-toggle"
+                            type="button"
+                            aria-haspopup="true"
+                            aria-expanded="false">
+                            Ingrédients
+                            <span
+                                class="fas fa-chevron-down dropdown-chevron"></span>
+                        </button>
+                        <div
+                            class="dropdown-menu"
+                            id="ingredientDropdown"
+                            aria-labelledby="ingredientDropdownToggle">
+                            <div class="dropdown-search-box">
+                                <div class="input-group">
+                                    <input
+                                        id="ingredientSearchInput"
+                                        type="search"
+                                        class="form-control search-input"
+                                        placeholder="Rechercher"
+                                        aria-label="Rechercher" />
+                                    <div class="input-group-append">
+                                        <span
+                                            class="input-group-text bg-transparent border-0"><i
+                                                class="fas fa-search"></i></span>
                                     </div>
                                 </div>
-
-                            </div>
-                            <div class="col-3">
-
-                                <div class="dropdown" id="ustensiles">
-                                    <div class="dropdown_title-section">
-                                        <h3
-                                            class="dropdown_title">Ustensiles</h3>
-                                        <i class="fa fa-chevron-down"></i>
-                                    </div>
-                                    <div class="dropdown_content">
-                                        <div class="dropdown_search-section">
-                                            <input type="search" name
-                                                id="ustensilsInput"
-                                                class="dropdown_search-input">
-                                            <i
-                                                class="fa-thin fa-magnifying-glass"></i>
-                                        </div>
-                                        <ul class="dropdown_list"
-                                            id="ustensiles_list">
-                                        </ul>
-                                    </div>
+                                <div id="ingredientTagsBox">
+                                    <!-- selected tags go here -->
                                 </div>
-
+                                <div class="dropdownItemsBox">
+                                    <ul id="ingredientDropdownItems">
+                                        <!-- items go here -->
+                                    </ul>
+                                </div>
                             </div>
-
                         </div>
-
-                        <div class="col-3">
-                            <span class="txt_filter"></span>
-                        </div>
-
                     </div>
-                    <div class="tags"></div>
-                </section>
-                <!-- Cards -->
-                <section id="recipes">
-                    <!-- Recipe content goes here -->
-                </section>
+                </div>
+                <div class="sortBox">
+                    <div class="dropdown">
+                        <button
+                            id="applianceDropdownToggle"
+                            class="btn dropdown-toggle"
+                            type="button"
+                            aria-haspopup="true"
+                            aria-expanded="false">
+                            Appareils
+                            <span
+                                class="fas fa-chevron-down dropdown-chevron"></span>
+                        </button>
+                        <div
+                            class="dropdown-menu"
+                            id="applianceDropdown"
+                            aria-labelledby="applianceDropdownToggle">
+                            <div class="dropdown-search-box">
+                                <div class="input-group">
+                                    <input
+                                        id="applianceSearchInput"
+                                        type="search"
+                                        class="form-control search-input"
+                                        placeholder="Rechercher"
+                                        aria-label="Rechercher" />
+                                    <div class="input-group-append">
+                                        <span
+                                            class="input-group-text bg-transparent border-0"><i
+                                                class="fas fa-search"></i></span>
+                                    </div>
+                                </div>
+                                <div id="applianceTagsBox">
+                                    <!-- tags go here -->
+                                </div>
+                                <div class="dropdownItemsBox">
+                                    <div id="applianceDropdownItems">
+                                        <!-- items go here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sortBox">
+                    <div class="dropdown">
+                        <button
+                            id="utensilDropdownToggle"
+                            class="btn dropdown-toggle"
+                            type="button"
+                            aria-haspopup="true"
+                            aria-expanded="false">
+                            Ustensiles
+                            <span
+                                class="fas fa-chevron-down dropdown-chevron"></span>
+                        </button>
+                        <div
+                            class="dropdown-menu"
+                            id="utensilDropdown"
+                            aria-labelledby="utensilDropdownToggle">
+                            <div class="dropdown-search-box">
+                                <div class="input-group">
+                                    <input
+                                        id="utensilSearchInput"
+                                        type="search"
+                                        class="form-control search-input"
+                                        placeholder="Rechercher"
+                                        aria-label="Rechercher" />
+                                    <div class="input-group-append">
+                                        <span
+                                            class="input-group-text bg-transparent border-0"><i
+                                                class="fas fa-search"></i></span>
+                                    </div>
+                                </div>
+                                <div id="utensilTagsBox">
+                                    <!-- tags go here -->
+                                </div>
+                                <div class="dropdownItemsBox">
+                                    <div id="utensilDropdownItems">
+                                        <!-- items go here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="totalRecipes"></div>
+            </div>
 
-            </main>
+            <div class="allTags">
+                <div class="allIngTags"></div>
+                <div class="allAppTags"></div>
+                <div class="allUteTags"></div>
+            </div>
+            <!-- Cards -->
+            <section id="recipes">
+                <!-- Recipe content goes here -->
+            </section>
 
-            <script src="recipes.js"></script>
-            <script src="search.js"></script>
+        </main>
 
-        </body>
-    </html>
+        <script src="recipes.js"></script>
+        <script src="search.js"></script>
+        
+        <script src="filter.js"></script>
+        
+        <script src="tag.js"></script>
+
+    </body>
+</html>

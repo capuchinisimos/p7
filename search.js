@@ -1,12 +1,17 @@
-
-
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.querySelector('.nav-search-bar');
     const searchButton = document.getElementById('search-loup');
+    const totalRecipeElement = document.querySelector(".totalRecipes");
+    const ingredientDropdownItems = document.getElementById('ingredientDropdownItems');
+    const applianceDropdownItems = document.getElementById('applianceDropdownItems');
+    const utensilDropdownItems = document.getElementById('utensilDropdownItems');
+
 
     function displayRecipes(recipes) {
         const cards = document.getElementById("recipes");
         let children = "";
+
+        totalRecipeElement.textContent = `${recipes.length} recettes`;
 
         for (let i = 0; i < recipes.length; i++) {
             let ingredientList = "";
@@ -34,6 +39,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
         cards.innerHTML = `<div><div class="row gy-5">${children}</div></div>`;
     }
+
+
+    function populateDropdowns(recipes) {
+        const ingredients = new Set();
+        const appliances = new Set();
+        const utensils = new Set();
+
+        recipes.forEach(recipe => {
+            recipe.ingredients.forEach(item => {
+                ingredients.add(item.ingredient);
+            });
+            appliances.add(recipe.appliance);
+            recipe.ustensils.forEach(utensil => {
+                utensils.add(utensil);
+            });
+        });
+
+        ingredients.forEach(ingredient => {
+            ingredientDropdownItems.innerHTML += `<li>${ingredient}</li>`;
+
+        });
+        appliances.forEach(appliance => {
+            applianceDropdownItems.innerHTML += `<li>${appliance}</li>`;
+
+        });
+        utensils.forEach(utensil => {
+            utensilDropdownItems.innerHTML += `<li>${utensil}</li>`;
+
+        });
+    }
+
+    // Fonctions pour filtrer les recettes par ingrédient, appareil et ustensile
+    function filterByIngredient(ingredient, recipes) {
+        return recipes.filter(recipe =>
+            recipe.ingredients.some(ing => ing.toLowerCase().includes(ingredient.toLowerCase()))
+        );
+    }
+
+    function filterByAppliance(appliance, recipes) {
+        return recipes.filter(recipe => recipe.appliance.toLowerCase().includes(appliance.toLowerCase()));
+    }
+
+    function filterByUtensil(utensil, recipes) {
+        return recipes.filter(recipe => recipe.ustensils.some(u => u.toLowerCase().includes(utensil.toLowerCase())));
+    }
+
+
+
 
     function handleSearch() {
         const searchTerm = searchInput.value.toLowerCase();
@@ -63,101 +116,48 @@ document.addEventListener('DOMContentLoaded', () => {
             displayRecipes(recipes);
         }
     }
-
+    totalRecipeElement.textContent = recipes.length + " recettes";
+    console.log("DisplayRecipes check: ", recipes);
     searchInput.addEventListener('input', handleSearch);
     searchButton.addEventListener('click', handleSearch);
 
     // Affichage initial de toutes les recettes
     displayRecipes(recipes);
-});
-const dropdownTitles = document.querySelectorAll(".dropdown_title-section");
-const dropdownContents = document.querySelectorAll(".dropdown_content");
-const chevrons = document.querySelectorAll(".fa-chevron-down");
-const dropdownInputs = document.querySelectorAll(".dropdown_search-input");
-const dropdownList = document.getElementById("ingredients_list");
-const appareilsList = document.getElementById("appareils_list");
-const ustensilesList = document.getElementById("ustensiles_list");
-
-
-document.addEventListener("DOMContentLoaded", () => {
-    handleDefaultItems();
-
+    populateDropdowns(recipes);
 });
 
+// Dropdown toggle behavior
+const dropdownToggleButtons = document.querySelectorAll(".dropdown-toggle");
+for (let i = 0; i < dropdownToggleButtons.length; i++) {
+    const button = dropdownToggleButtons[i];
+    button.addEventListener("click", function () {
+        event.stopPropagation(); // stop event from propagating to the document
+        const dropdownMenu = button.nextElementSibling;
 
-handleDropdown(dropdownTitles, dropdownContents, chevrons);
+        // Check if dropdownMenu contains .show (if not: hidden, if yes: visible)
+        if (dropdownMenu.classList.contains("show") == false) {
+            const buttons = document.querySelectorAll(".dropdown-toggle");
 
-// Écouteurs d'événements pour chaque dropdown
-dropdownInputs.forEach(input => {
-    input.addEventListener("keydown", (e) => {
-        const search = e.target.value.toLowerCase().trim();
-
-        if (search === "") {
-            handleDefaultItems();
-        }
-
-        if (e.key === "Enter") {
-            if (e.target.id === "ingredientsInput") {
-                filterAndUpdateDropdown(search, uniqueIngredients, dropdownList);
-            } else if (e.target.id === "appliancesInput") {
-                filterAndUpdateDropdown(search, uniqueAppliances, appareilsList);
-            } else if (e.target.id === "ustensilsInput") {
-                filterAndUpdateDropdown(search, uniqueUstensils, ustensilesList);
+            for (let j = 0; j < buttons.length; j++) {
+                // Remove .show from next sibling of each .dropdown-toggle
+                buttons[j].nextElementSibling.classList.remove("show");
+                // Set aria-expanded to false, informs the toggle is closed
+                buttons[j].setAttribute("aria-expanded", false);
             }
         }
-    });
-});
 
-// Fonction pour filtrer les éléments et mettre à jour le dropdown
-function filterAndUpdateDropdown(search, itemList, dropdownType) {
-    const filteredItems = itemList.filter(item => item.toLowerCase().includes(search));
-    if (filteredItems.length > 0) {
-        handleSearchResults(filteredItems, dropdownType);
-    } else {
-        handleDefaultItems();
-    }
-}
-
-function handleSearchResults(results, listElement) {
-    // Effacer les anciens résultats
-    listElement.innerHTML = "";
-
-    // Afficher les nouveaux résultats de la recherche
-    results.forEach(result => {
-        const li = document.createElement("li");
-        li.classList = "dropdown_item";
-        li.textContent = result;
-        listElement.appendChild(li);
-        handleTags(li);
+        dropdownMenu.classList.toggle("show");
+        // If .show, aria-expanded informs the toggle is expanded
+        button.setAttribute(
+            "aria-expanded",
+            dropdownMenu.classList.contains("show")
+        );
     });
 }
 
-// Liste d'items par défaut
-function handleDefaultItems() {
-    for (const ingredient of uniqueIngredients) {
-        const li = document.createElement("li");
-        li.classList = "dropdown_item";
-        li.textContent = ingredient;
-        dropdownList.appendChild(li);
-        handleTags(li);
-    }
-    for (const appliance of uniqueAppliances) {
-        const li = document.createElement("li");
-        li.classList = "dropdown_item";
-        li.textContent = appliance;
-        appareilsList.appendChild(li);
-        handleTags(li);
-    }
-    for (const ustensil of uniqueUstensils) {
-        const li = document.createElement("li");
-        li.classList = "dropdown_item";
-        li.textContent = ustensil;
-        ustensilesList.appendChild(li);
-        handleTags(li);
-    }
-}
-
-// Appel de la fonction qui gère les events liés à la barre de recherche
-handleSearchInput();
-
-
+window.onload = function () {
+    // Call the functions to display the recipes
+    displayRecipes(recipes);
+    populateDropdowns(recipes);
+    attachEventListeners();
+};
